@@ -1,0 +1,1 @@
+SMTP for simply-cpp: send mail to a relay from the program itself (libcurl: STARTTLS, TLS, AUTH), no sendmail
