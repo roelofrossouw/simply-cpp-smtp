@@ -1,9 +1,9 @@
 // sc-smtp's example: sends a short mail through an SMTP server.
 //
 //     sc-smtp-demo HOST FROM TO [SUBJECT]
-#include <sc_smtp.h>
+#include <sc/smtp/sc_smtp.h>
 
-#include <params.h>
+#include <sc/core/params.h>
 
 #include <iostream>
 

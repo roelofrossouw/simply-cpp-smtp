@@ -2,7 +2,7 @@
 // text as the server gets them ("\r\n" line ends, dot-stuffing), EHLO's name, the null sender, refused recipients and
 // senders (with their reply codes, and whether they're temporary), no server there, STARTTLS required by a server
 // that doesn't offer it; address_of(), security_from(), default_sender().
-#include <sc_smtp.h>
+#include <sc/smtp/sc_smtp.h>
 #include <sc_test.h>
 
 #include <atomic>

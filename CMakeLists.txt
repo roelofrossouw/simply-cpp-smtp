@@ -9,7 +9,7 @@ get_sc_version()
 message(STATUS "SimplyCPP ${SC_MODULE} Version: ${SC_VERSION}")
 
 # sc::params for the example; libcurl (curl license) speaks SMTP, STARTTLS and SMTPS, from the system.
-find_or_install_package(sc-core simply-cpp-dev simply-cpp 2.0.0)
+find_or_install_package(sc-core simply-cpp-dev simply-cpp 2.2.0)
 find_or_install_package(CURL libcurl4-openssl-dev curl)
 
 set(SOURCE_OBJECTS)

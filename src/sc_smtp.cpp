@@ -1,4 +1,4 @@
-#include <sc_smtp.h>
+#include <sc/smtp/sc_smtp.h>
 
 #include <curl/curl.h>
 
