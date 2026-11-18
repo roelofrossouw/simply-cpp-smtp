@@ -18,7 +18,7 @@ set(SOURCE_LINK_LIBRARIES)
 
 # libcurl by name, as sc-http links it: CURL::libcurl's include directory (the macOS SDK's usr/include) would come
 # before libc++'s headers in every module using sc-smtp.
-add_sc_object(sc_smtp LINK_LIBRARIES sc::sc-core curl PUBLIC_LINK_LIBRARIES sc::sc-core curl)
+add_sc_object(smtp LINK_LIBRARIES sc::sc-core curl PUBLIC_LINK_LIBRARIES sc::sc-core curl)
 
 add_sc_libraries(DESCRIPTION "simply-cpp SMTP client on libcurl: send mail to a relay, STARTTLS/TLS and AUTH, no sendmail")
 target_compile_features(sc-smtp PUBLIC cxx_std_20)

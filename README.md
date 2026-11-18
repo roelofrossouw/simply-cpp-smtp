@@ -5,8 +5,8 @@ itself: no `sendmail`, no other program run. [libcurl](https://curl.se/libcurl/)
 and AUTH; nothing of it shows in the API.
 
 ```cpp
-#include <sc/mime/sc_mime.h>   // sc-mime writes the message
-#include <sc/smtp/sc_smtp.h>
+#include <sc/mime/mime.h>   // sc-mime writes the message
+#include <sc/smtp/smtp.h>
 
 const auto message = sc::mime::draft{}
     .from({"Reports", "reports@example.com"})
