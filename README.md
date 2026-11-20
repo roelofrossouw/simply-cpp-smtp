@@ -36,6 +36,15 @@ smtp.send({.from = "reports@example.com", .to = {"ann@example.com"}}, message);
   answered) and `temporary()` (no answer, or a 4xx reply: try again later). A message isn't queued: the caller decides
   when to try again.
 - **Time limits**: `connect_timeout` (30 s) and `timeout` (120 s, the whole conversation).
+- **Probing an address** (`<sc/smtp/probe.h>`, since 3.1.0): `probe(address, settings)` asks the domain's mail
+  servers whether they'd take mail for it, without sending any: EHLO (HELO when EHLO is refused), MAIL FROM, RCPT TO,
+  then RSET and QUIT; never DATA. The servers are `mail_exchangers(domain)`: the MX hosts by preference, the domain
+  itself when it has none, none for a null MX. A server that can't be reached or doesn't greet with 220 passes the
+  question on to the next. The result is the deciding reply (`code`, `reply`, `host`, `stage`: RCPT TO's, or an
+  earlier refusal of EHLO or the sender), or code 0 with `problem` saying why no server answered. Plain TCP to port
+  25, with `connect_timeout` (per address), `command_timeout` (per reply) and `total_timeout` (10, 20 and 30 s).
+  What an answer means is the caller's call: catch-all servers take every address. `host_name()` is the host's
+  fully qualified name, as an MTA gives it in EHLO. It uses the system's resolver library (libresolv).
 
 ## Building and testing
 
@@ -44,7 +53,8 @@ cmake -S . -B build && cmake --build build && ctest --test-dir build --output-on
 ```
 
 It needs sc-core and libcurl (`libcurl4-openssl-dev`; macOS has it), found or installed by CMake. The test runs a
-small SMTP server of its own on 127.0.0.1 and checks what it's told.
+small SMTP server of its own on 127.0.0.1 and checks what it's told; the probe's test does the same, with servers
+that refuse, greylist, greet with 554 or never answer.
 
 `sc-smtp-demo HOST FROM TO [SUBJECT]` sends a short mail.
 
